@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Delegate Plugin Tests</title>
+		<link rel="stylesheet" type="text/css" media="all" href="qunit/qunit.css">
+		
+		<style>
+			.test li {
+				margin-left: 3em;
+				width: 200px;
+			}
+			
+			.red {
+				background: #cb113d;
+			}
+			.green {
+				background: #37b810;
+			}
+			.blue {
+				background: #1037b8;
+			}
+			.yellow {
+				background: #d4a412;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 id="qunit-header">Delegate Plugin Tests</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		
+		<div id="test0" class="test">
+			<ul>
+				<li class="red"><a href="#nogo">First link</a></li>
+				<li class="green"><a href="#nogo">Secod link</a></li>
+				<li class="yellow"><a href="#nogo">Third link</a></li>
+				<li class="blue"><a href="#nogo">Fourth link</a></li>
+			</ul>
+			<p>Class of the last clicked item: <span class="display"></span></p>
+		</div>
+		
+		<div id="test1" class="test">
+			<ul>
+				<li class="red">First item</li>
+				<li class="green">Second item</li>
+				<li class="yellow">Third item</li>
+				<li class="blue">Fourth item</li>
+			</ul>
+			<p>Class of the last smurfed item: <span class="display"></span></p>
+		</div>
+		
+		<div id="test2" class="test">
+			<ul>
+				<li class="red"><input type="text"/></li>
+				<li class="green"><input type="text"/></li>
+				<li class="yellow"><input type="text"/></li>
+				<li class="blue"><input type="text"/></li>
+			</ul>
+			<p>Class of the last focused item: <span class="display"></span></p>
+		</div>
+		
+		<div id="test3" class="test">
+			<ul>
+				<li class="red"><input type="text"/></li>
+				<li class="green"><input type="text"/></li>
+				<li class="yellow"><input type="text"/></li>
+				<li class="blue"><input type="text"/></li>
+			</ul>
+			<p>Class of the last blured item: <span class="display"></span></p>
+		</div>
+		
+		<div id="test4" class="test">
+			<ul>
+				<li class="red"><form><input type="submit"/></form></li>
+				<li class="green"><form><input type="image"/></form></li>
+				<li class="yellow"><form><input type="text"/></form></li>
+				<li class="blue"><form><input type="password"/></form></li>
+			</ul>
+			<p>Class of the last submited item: <span class="display"></span></p>
+		</div>
+		
+		<div id="test5" class="test">
+			<ul>
+				<li class="red"><input type="text"/></li>
+				<li class="green"><input type="text"/></li>
+				<li class="yellow"><input type="text"/></li>
+				<li class="blue"><input type="text"/></li>
+			</ul>
+			<p>Class of the last changed item: <span class="display"></span></p>
+		</div>
+		
+		<div id="test6" class="test">
+			<ul>
+				<li class="red"><input type="text" value="some text"/></li>
+				<li class="green"><input type="text" value="some text"/></li>
+				<li class="yellow"><input type="text" value="some text"/></li>
+				<li class="blue"><input type="text" value="some text"/></li>
+			</ul>
+			<p>Class of the last selected item: <span class="display"></span></p>
+		</div>
+		
+		<script src="jquery.js"></script>
+		<!-- The following plugin is unnecessary when using my branch of jQuery -->
+		<!--<script src="jquery.filter.js"></script>-->
+		<script src="../jquery.delegate.js"></script>
+		
+		<script src="qunit/qunit.js"></script>
+		<script src="test.js"></script>
+	</body>
+</html>
