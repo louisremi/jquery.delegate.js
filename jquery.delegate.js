@@ -6,7 +6,7 @@ $.fn.delegate = function(type, selector, callback) {
 		case "mouseleave":
 			return $(this).bind(type, function( event ) {
 				var $elem = $(event.target).closest(selector),
-					$related = $(event.relatedTarget).closest(selector); 
+					$related = $(event.relatedTarget).closest(selector, this); 
 				if(!$related.length || $related[0] != $elem[0]) {
 					event.currentTarget = $elem[0]; 
 					return callback.apply(this, arguments);
@@ -19,7 +19,7 @@ $.fn.delegate = function(type, selector, callback) {
 			// Use co-opted focusin/out event for IE
 			if( typeof document.attachEvent == "object" ) {
 				return $(this).bind("focusin."+type+"Focus", function( event ) {
-					var $elem = $(event.target).closest(selector),
+					var $elem = $(event.target).closest(selector, this),
 						args = arguments,
 						self = this;
 					if($elem.length) {
@@ -29,7 +29,7 @@ $.fn.delegate = function(type, selector, callback) {
 						});
 					}
 				}).bind("focusout."+type+"Focus", function( event ) {
-					var $elem = $(event.target).closest(selector); 
+					var $elem = $(event.target).closest(selector, this); 
 					if($elem.length) {
 						$(event.target).unbind(type, callback);
 					}
@@ -39,7 +39,7 @@ $.fn.delegate = function(type, selector, callback) {
 			// those events do bubble in other browsers
 		default:
 			return $(this).bind(type, function( event ) {
-				var $elem = $(event.target).closest(selector);
+				var $elem = $(event.target).closest(selector, this);
 				if($elem.length) {
 					event.currentTarget = $elem[0];
 					return callback.apply(this, arguments);
