@@ -1,6 +1,6 @@
 (function($) {
 
-$.fn.delegate = function(type, selector, callback) {
+$.fn.delegate = function(selector, type, callback) {
 	return this.each(function() {
 		var $event = $.event,
 			$add = $event.add;
@@ -13,23 +13,23 @@ $.fn.delegate = function(type, selector, callback) {
 						$related = $(event.relatedTarget).closest(selector, this); 
 					if(!$related.length || $related[0] != $elem[0]) {
 						event.currentTarget = $elem[0]; 
-						return callback.apply(this, arguments);
+						return callback.apply($elem[0], arguments);
 					}
 				});
 				break;
 			case "submit":
 			case "change":
 			case "select":
-				// Use co-opted focusin/out event for IE
+        // Use co-opted focusin/out event for IE
 				if( typeof document.attachEvent == "object" ) {
 					$add(this, "focusin."+type+"Focus", function( event ) {
-						var $elem = $(event.target).closest(selector, this),
+            var $elem = $(event.target).closest(selector, this),
 							args = arguments,
 							self = this;
 						if($elem.length) {
 							event.currentTarget = $elem[0];
 							$add(event.target, type+"."+type+"Focus", function() {
-								callback.apply(self, args);
+                callback.apply($elem[0], args);
 							});
 						}
 					});
@@ -43,11 +43,11 @@ $.fn.delegate = function(type, selector, callback) {
 				// those events do bubble in other browsers
 				}
 			default:
-				$add(this, type, function( event ) {
-					var $elem = $(event.target).closest(selector, this);
+        $add(this, type, function( event ) {
+          var $elem = $(event.target).closest(selector, this);
 					if($elem.length) {
 						event.currentTarget = $elem[0];
-						return callback.apply(this, arguments);
+            return callback.apply($elem[0], arguments);
 					}
 				});
 				break;
